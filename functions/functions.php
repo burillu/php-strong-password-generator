@@ -17,6 +17,9 @@ function generate_password()
     $new_pasw .= $all_char[rand(0, strlen($all_char) - 1)];
   }
   // var_dump($new_pasw);
+  $_SESSION['psw']= $new_pasw;
+  header('Location: show-psw.php');
+  
   return $new_pasw;
 }
 

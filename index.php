@@ -50,14 +50,7 @@ if (isset($_GET["length"])) {
         </div>
         <button type="submit" class="btn btn-primary"> Generate </button>
     </form>
-    <?php
-    if (isset($_GET['length'])) { ?>
-      <div class="alert alert-success">
-        Ecco la tua nuova password:
-        <h3> <?php echo $result ?></h3>
-      </div>
-
-    <?php } ?>
+    
 
   </div>
 

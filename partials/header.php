@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include __DIR__ ."/../functions/functions.php";
 ?> 
 
@@ -27,7 +28,7 @@ include __DIR__ ."/../functions/functions.php";
         <div class="container">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Password Generator</a>
+    <a class="navbar-brand" href="<?php __DIR__ .'/../index.php'?>">Password Generator</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
