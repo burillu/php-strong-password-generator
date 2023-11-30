@@ -9,10 +9,11 @@ if (isset($_GET["length"]) && isset($_GET['types'])) {
 
 
 
-  char_builder($_GET['types']);
+  //char_builder($_GET['types']);
   $result = generate_password();
+  //var_dump($result);
 
-  
+
 }
 
 ?>
@@ -55,7 +56,10 @@ if (isset($_GET["length"]) && isset($_GET['types'])) {
         </div>
         <button type="submit" class="btn btn-primary"> Generate </button>
     </form>
+    <?php if (isset($_GET['types']) && $result) {
 
+      echo " <div class='alert alert-danger'>$result </div> ";
+    } ?>
 
   </div>
 

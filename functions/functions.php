@@ -23,27 +23,6 @@ function char_builder($array)
             $sel_char .= $char . $char_capital;
         }
     }
-    //var_dump($sel_char);
-
-
-
-
-
-    // if (isset($_GET['type'])) {
-    //     $array_types = $_GET['type'];
-    //     var_dump($array_types);
-    //     if ($array_types['sym']) {
-    //         $sel_char .= $symbols;
-    //     }
-    //     if ($array_types['num']) {
-    //         $sel_char .= $numbers;
-    //     }
-    //     if ($array_types['char']) {
-    //         $sel_char .= $char . $char_capital;
-    //     }
-    //     var_dump($sel_char);
-
-    // }
 
     return $sel_char;
 }
@@ -55,17 +34,22 @@ function char_builder($array)
 //funzione per generare password
 function generate_password()
 {
-    $symbols = '!?&%$<>^+-*/()[]{}@#_=';
-    $char = 'abcdefghijklmnopqrstuvwxyz';
-    $char_capital = strtoupper($char);
-    $all_char = $symbols . $char . $char_capital;
+   // var_dump($_GET['types'][0]);
+    $all_char= char_builder($_GET['types']);
+ if ( strlen($all_char)< (int) $_GET['length']){
+    return 'Non è possibile generare una password di soli numeri, che non si ripetano, e che superi la lunghezza di 10 caratteri';
+ }
+    
     //var_dump($all_char);
     $new_pasw = '';
-    while (strlen($new_pasw) < $_GET['length']) {
+
+    $counter = 0;
+    while (strlen($new_pasw) < (int) $_GET['length'] && $counter < 100) {
         //ripetizione caratteri
         if ($_GET['repeat']) {
             $new_pasw .= $all_char[rand(0, strlen($all_char) - 1)];
         }
+        
         //NON ripetizione caratteri
         if (!$_GET['repeat']) {
             $new_char = $all_char[rand(0, strlen($all_char) - 1)];
@@ -76,16 +60,17 @@ function generate_password()
 
 
         }
+        $counter++;
 
 
 
     }
-    var_dump($new_pasw);
+    //var_dump($new_pasw);
     $_SESSION['psw'] = $new_pasw;
-    var_dump($_GET);
+    //var_dump($_GET);
 
-    //header('Location: show-psw.php');
-    return $new_pasw;
+    header('Location: show-psw.php');
+    
 }
 
 
