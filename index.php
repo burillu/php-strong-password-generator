@@ -1,32 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Michele Ebau">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  
-    <title>php password generator</title>
-</head>
-<body>
-<?php 
-echo '$nulla';
+<?php
+include __DIR__ . "/partials/header.php";
+
+//print_prova();
+if (isset($_GET["length"])) {
+  $length = (int)$_GET["length"];
+  //var_dump($length);
+
+  //funzione per generare password
+  function generate_password(){
+    $symbols = '!?&%$<>^+-*/()[]{}@#_=';
+    $char='abcdefghijklmnopqrstuvwxyz';
+    $char_capital= strtoupper($char);
+    $all_char=$symbols . $char . $char_capital;
+    //var_dump($all_char);
+    $new_pasw='';
+    while (strlen($new_pasw) < $_GET['length']) {
+      # code...
+      $new_pasw .= $all_char[rand(0, strlen($all_char)- 1)] ;
+    }
+    var_dump($new_pasw);
+  }
+  generate_password();
+}
 
 ?>
 
-  
-  <!-- <script src="js/utility.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <script src="js/script.js" type="module"></script>
-</body>
-</html>
+<main>
+  <div class="container">
+
+    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" class="row justify-content-center">
+      <div class="col-9">
+        <div class="row justify-content-between">
+          <span class="col"> Lunghezza Password:</span>
+          <div class="form-floating mb-3 col">
+            <input type="number" class="form-control" id="psw-input" name="length">
+            <label for="psw-input">Inserisci lunghezza password</label>
+          </div>
+        </div>
+        <div class="row justify-content-between">
+          <span class="col"> Consenti ripetizione caratteri:</span>
+          <div class="form-check mb-3 col">
+            <div class="radio mb-3">
+              <input type="radio" id="radio-true" class="form-check-input" name="repeat" value="true">
+              <label for="radio-true"> Sì</label><br>
+              <input type="radio" id="radio-false" class="form-check-input" name="repeat" value="false" checked>
+              <label for="radio-false" > No</label>
+            </div>
+
+            <div class="checkbox">
+              <input class="form-check-input" type="checkbox" value="char" id="char">
+              <label class="form-check-label" for="char"> Lettere </label><br>
+              <input class="form-check-input" type="checkbox" value="numbers" id="numbers">
+            <label class="form-check-label" for="numbers"> Numbers </label><br>
+              <input class="form-check-input" type="checkbox" value="symbols" id="symbols">
+              <label class="form-check-label" for="symbols"> Simboli </label>
+            </div>
+
+
+
+
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary"> Generate </button>
+    </form>
+  </div>
+
+
+
+
+  </div>
+</main>
+
+<?php
+include __DIR__ . "/partials/footer.php";
+?>
