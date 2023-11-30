@@ -71,4 +71,5 @@ if (isset($_GET["length"]) && isset($_GET['types'])) {
 
 <?php
 include __DIR__ . "/partials/footer.php";
+// Milestone 4 Completed
 ?>
