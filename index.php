@@ -2,12 +2,17 @@
 include __DIR__ . "/partials/header.php";
 
 //print_prova();
-if (isset($_GET["length"])) {
+if (isset($_GET["length"]) && isset($_GET['types'])) {
   $length = (int) $_GET["length"];
   //var_dump($length);
 
-  
+
+
+
+  char_builder($_GET['types']);
   $result = generate_password();
+
+  
 }
 
 ?>
@@ -35,11 +40,11 @@ if (isset($_GET["length"])) {
             </div>
 
             <div class="checkbox">
-              <input class="form-check-input" name="char" value="true" type="checkbox" value="char" id="char">
+              <input class="form-check-input" name="types[]" value="char" type="checkbox" id="char">
               <label class="form-check-label" for="char"> Lettere </label><br>
-              <input class="form-check-input" name="num" value="true" type="checkbox" value="numbers" id="numbers">
+              <input class="form-check-input" name="types[]" value="num" type="checkbox" id="numbers">
               <label class="form-check-label" for="numbers"> Numbers </label><br>
-              <input class="form-check-input" name="sym" value="true" type="checkbox" value="symbols" id="symbols">
+              <input class="form-check-input" name="types[]" value="sym" type="checkbox" id="symbols">
               <label class="form-check-label" for="symbols"> Simboli </label>
             </div>
 
@@ -50,7 +55,7 @@ if (isset($_GET["length"])) {
         </div>
         <button type="submit" class="btn btn-primary"> Generate </button>
     </form>
-    
+
 
   </div>
 
