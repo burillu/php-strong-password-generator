@@ -1,7 +1,7 @@
 <?php
 include __DIR__ . "/partials/header.php";
 
-if (!isset($_SESSION['psw'])) {
+if (!isset($_SESSION['psw']) || strlen($_SESSION['psw'])< 1) {
     header('Location: index.php');
     session_destroy();
     die();

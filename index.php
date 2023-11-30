@@ -30,16 +30,16 @@ if (isset($_GET["length"])) {
             <div class="radio mb-3">
               <input type="radio" id="radio-true" class="form-check-input" name="repeat" value="true">
               <label for="radio-true"> Sì</label><br>
-              <input type="radio" id="radio-false" class="form-check-input" name="repeat" value="false" checked>
+              <input type="radio" id="radio-false" class="form-check-input" name="repeat" value="0" checked>
               <label for="radio-false"> No</label>
             </div>
 
             <div class="checkbox">
-              <input class="form-check-input" type="checkbox" value="char" id="char">
+              <input class="form-check-input" name="char" value="true" type="checkbox" value="char" id="char">
               <label class="form-check-label" for="char"> Lettere </label><br>
-              <input class="form-check-input" type="checkbox" value="numbers" id="numbers">
+              <input class="form-check-input" name="num" value="true" type="checkbox" value="numbers" id="numbers">
               <label class="form-check-label" for="numbers"> Numbers </label><br>
-              <input class="form-check-input" type="checkbox" value="symbols" id="symbols">
+              <input class="form-check-input" name="sym" value="true" type="checkbox" value="symbols" id="symbols">
               <label class="form-check-label" for="symbols"> Simboli </label>
             </div>
 
